@@ -1,5 +1,9 @@
 package controller
 
-func findServer()  {
+func recommendGameServer()  {
+	
+}
+
+func listServers()  {
 	
 }

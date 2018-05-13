@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"github.com/GreyHood-Studio/web_server/controller"
+	"github.com/GreyHood-Studio/server_util/random"
 )
 
 
@@ -18,12 +19,16 @@ func handleRequestLogin(c *gin.Context)  {
 		nickname, exist := controller.LoginUser(form.ID, form.Password)
 		if exist{
 			// create session key
-
-			c.JSON(http.StatusOK, gin.H{"status": nickname})
+			randkey := random.CreateRandomString(16)
+			c.JSON(http.StatusOK, gin.H{"status": nickname, "session": randkey})
 		} else {
 			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
 		}
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
+}
+
+func passSessionKey()  {
+	
 }

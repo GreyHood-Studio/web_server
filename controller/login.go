@@ -8,7 +8,7 @@ import (
 func LoginUser(userID string, password string) (string, bool) {
 	// select
 	var nickname string
-	err := database.DBConn["user"].QueryRow("SELECT nickname FROM tb_user WHERE id=$1 AND password=$2",
+	err := database.Conns["user"].QueryRow("SELECT nickname FROM tb_user WHERE id=$1 AND password=$2",
 		userID, password).Scan(&nickname)
 	if err != nil {
 		return "", false

@@ -9,7 +9,7 @@ import (
 func SignUpAccount(userID string, password string, nickname string) (){
 	// insert
 	var uid int
-	err := database.DBConn["user"].QueryRow("INSERT INTO tb_user(id, password, nickname) VALUES($1,$2,$3) returning uid;", userID, password, nickname).Scan(&uid)
+	err := database.Conns["user"].QueryRow("INSERT INTO tb_user(id, password, nickname) VALUES($1,$2,$3) returning uid;", userID, password, nickname).Scan(&uid)
 	error.NoDeadError(err, "insert user error")
 	fmt.Println("total user count =", uid)
 }
@@ -17,7 +17,7 @@ func SignUpAccount(userID string, password string, nickname string) (){
 func ChangePassword(userID string, password string) (){
 	// update
 	fmt.Println("# Updating")
-	stmt, err := database.DBConn["user"].Prepare("update tb_user set password=$1 where id=$2")
+	stmt, err := database.Conns["user"].Prepare("update tb_user set password=$1 where id=$2")
 	error.NoDeadError(err, "prepare error")
 
 	res, err := stmt.Exec(password, userID)
