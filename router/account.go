@@ -55,7 +55,7 @@ func handleRequestChangePasswordForm(c *gin.Context) {
 	// This will infer what binder to use depending on the content-type header.
 	if err := c.ShouldBind(&form); err == nil {
 		controller.ChangePassword(form.ID, form.Password)
-		c.JSON(http.StatusOK, gin.H{"status": "signup complete"})
+		c.JSON(http.StatusOK, gin.H{"status": "change password complete"})
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
@@ -66,7 +66,7 @@ func handleRequestChangePasswordJson(c *gin.Context) {
 	// This will infer what binder to use depending on the content-type header.
 	if err := c.ShouldBind(&json); err == nil {
 		controller.ChangePassword(json.ID, json.Password)
-		c.JSON(http.StatusOK, gin.H{"status": "signup complete"})
+		c.JSON(http.StatusOK, gin.H{"status": "change password complete"})
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}

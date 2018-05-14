@@ -14,5 +14,6 @@ func LoginUser(userID string, password string) (string, bool) {
 		return "", false
 	}
 	fmt.Println("logined user: ", nickname)
+
 	return nickname, true
 }

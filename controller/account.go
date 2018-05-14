@@ -9,6 +9,7 @@ import (
 func SignUpAccount(userID string, password string, nickname string) (){
 	// insert
 	var uid int
+	fmt.Println("signup account", userID, password, nickname)
 	err := database.Conns["user"].QueryRow("INSERT INTO tb_user(id, password, nickname) VALUES($1,$2,$3) returning uid;", userID, password, nickname).Scan(&uid)
 	error.NoDeadError(err, "insert user error")
 	fmt.Println("total user count =", uid)

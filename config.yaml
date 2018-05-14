@@ -24,7 +24,7 @@ database:
 cache:
   # running server coordinator
   # auto scaling, server managing
-  - use: "coordinate"
+  - use: "cache"
     session: 10
     address: "localhost:6379"
     password: ""
@@ -33,3 +33,7 @@ cache:
     session: 10
     address: "localhost:6379"
     password: ""
+
+# set logs
+#log:
+#  path: ""
