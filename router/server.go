@@ -3,21 +3,9 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"github.com/GreyHood-Studio/web_server/model"
 )
 
-type GameServer struct {
-	// [ip]:[port]
-	Address			string
-	MaxRoom			int
-	CurrentRoom		int
-}
-
-type NPCServer struct {
-	Address			string
-}
-
-var GameServers map[string]GameServer
-var NPCServers map[string]NPCServer
 
 func setServerRoute(router *gin.Engine) {
 
@@ -31,14 +19,14 @@ func setServerRoute(router *gin.Engine) {
 }
 
 func registGameServer(c *gin.Context)  {
-	var form GameServer
+	var form model.GameServer
 	if err := c.ShouldBind(&form); err == nil {
 		c.JSON(http.StatusOK, gin.H{"serverId": "test"})
 	}
 }
 
 func registNPCServer(c *gin.Context)  {
-	var form NPCServer
+	var form model.NPCServer
 	if err := c.ShouldBind(&form); err == nil {
 
 	}

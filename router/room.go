@@ -4,7 +4,7 @@ import "github.com/gin-gonic/gin"
 
 func setRoomRoute(router *gin.Engine)  {
 	router.POST("/room", createRoom)
-	router.POST("/room", changeRoom)
+	router.PUT("/room", changeRoom)
 	router.DELETE("/room", removeRoom)
 }
 

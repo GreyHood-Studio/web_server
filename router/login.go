@@ -7,6 +7,7 @@ import (
 	"github.com/gin-contrib/sessions"
 	"github.com/GreyHood-Studio/server_util/random"
 	"fmt"
+	"github.com/GreyHood-Studio/web_server/model"
 )
 
 
@@ -15,7 +16,7 @@ func setLoginRoute(router *gin.Engine) {
 }
 
 func handleRequestLogin(c *gin.Context)  {
-	var form Account
+	var form model.Account
 	// This will infer what binder to use depending on the content-type header.
 	if err := c.ShouldBind(&form); err == nil {
 		nickname, exist := controller.LoginUser(form.ID, form.Password)

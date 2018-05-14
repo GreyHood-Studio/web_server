@@ -4,18 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"github.com/GreyHood-Studio/web_server/controller"
+	"github.com/GreyHood-Studio/web_server/model"
 )
-
-type Account struct {
-	ID     string `form:"id" json:"id" binding:"required"`
-	Password string `form:"password" json:"password" binding:"required"`
-}
-
-type User struct {
-	ID     string `form:"id" json:"id" binding:"required"`
-	Password string `form:"password" json:"password" binding:"required"`
-	NickName string `form:"nickname" json:"nickname" binding:"required"`
-}
 
 func setAccountRoute(router *gin.Engine) {
 
@@ -30,7 +20,7 @@ func setAccountRoute(router *gin.Engine) {
 }
 
 func handleRequestSignupForm(c *gin.Context)  {
-	var form User
+	var form model.User
 	// This will infer what binder to use depending on the content-type header.
 	if err := c.ShouldBind(&form); err == nil {
 		controller.SignUpAccount(form.ID, form.Password, form.NickName)
@@ -41,7 +31,7 @@ func handleRequestSignupForm(c *gin.Context)  {
 }
 
 func handleRequestSignupJson(c *gin.Context)  {
-	var json User
+	var json model.User
 	if err := c.ShouldBindJSON(&json); err == nil {
 		controller.SignUpAccount(json.ID, json.Password, json.NickName)
 		c.JSON(http.StatusOK, gin.H{"status": "signup complete"})
@@ -51,7 +41,7 @@ func handleRequestSignupJson(c *gin.Context)  {
 }
 
 func handleRequestChangePasswordForm(c *gin.Context) {
-	var form Account
+	var form model.Account
 	// This will infer what binder to use depending on the content-type header.
 	if err := c.ShouldBind(&form); err == nil {
 		controller.ChangePassword(form.ID, form.Password)
@@ -62,7 +52,7 @@ func handleRequestChangePasswordForm(c *gin.Context) {
 }
 
 func handleRequestChangePasswordJson(c *gin.Context) {
-	var json Account
+	var json model.Account
 	// This will infer what binder to use depending on the content-type header.
 	if err := c.ShouldBind(&json); err == nil {
 		controller.ChangePassword(json.ID, json.Password)

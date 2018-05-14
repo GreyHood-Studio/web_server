@@ -1,10 +1,13 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/GreyHood-Studio/web_server/model"
+)
 
 func init()  {
-	GameServers = make(map[string]GameServer)
-	NPCServers = make(map[string]NPCServer)
+	model.GameServers = make(map[string]model.GameServer)
+	model.NPCServers = make(map[string]model.NPCServer)
 }
 
 func SetAPIRoute(router *gin.Engine) {
